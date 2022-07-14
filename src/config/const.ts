@@ -1,0 +1,5 @@
+export const AUTH_TOKEN = '@movie_token'
+export const USER_INFO = '@movie_user'
+export const VERIFY_ID = '@movie_verify'
+export const ERR_BAD_REQUEST = 'ERR_BAD_REQUEST'
+export const ERR_NETWORK = 'ERR_NETWORK'
