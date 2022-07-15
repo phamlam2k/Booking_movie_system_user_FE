@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { bindParams } from '@config/function'
 import { MOVIE_DETAIL } from '@config/path'
 import useMovieQuery from '@hooks/useMovieQuery'
