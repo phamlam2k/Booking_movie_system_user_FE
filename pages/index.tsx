@@ -1,5 +1,6 @@
 import Home from '@components/screens/Home'
 import Banner from '@src/common/Banner'
+import Footer from '@src/common/Footer'
 import Header from '@src/common/Header'
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -14,6 +15,7 @@ const HomePage: NextPage = () => {
         <Header />
         <Banner />
         <Home />
+        <Footer />
       </div>
     </>
   )

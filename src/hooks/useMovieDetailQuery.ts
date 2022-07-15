@@ -1,6 +1,6 @@
 import { bindParams } from '@config/function'
 import { useQuery } from 'react-query'
-import { API_MOVIES, API_MOVIE_DETAIL } from '../config/endpointApi'
+import { API_MOVIE_DETAIL } from '../config/endpointApi'
 import { getAxios } from '../utils/Http'
 
 const getMovie = async (id: any) => {

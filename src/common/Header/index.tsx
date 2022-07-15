@@ -1,9 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import { USER_INFO } from '@config/const'
 import { isLogin } from '@config/function'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ToastContainer } from 'react-toastify'
 import { HOME, LOGIN, MOVIE_COMING_SOON, MOVIE_NOW_SHOWING, REGISTER, TICKET } from '../../config/path'
+import { UserIcon } from '../Icons'
 
 const MENU_LINK = [
   {
@@ -26,6 +29,14 @@ const MENU_LINK = [
 
 const Header = () => {
   const { pathname } = useRouter()
+  const [userInfo, setUserInfo] = useState()
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setUserInfo(JSON.parse(localStorage.getItem(USER_INFO) || '').full_name.split(' ')[0])
+    }
+  }, [])
+
   return (
     <div className="w-full bg-[#00000059] shadow-2xl fixed">
       <div className="flex w-[65%] justify-between m-auto gap-[30px]">
@@ -43,7 +54,10 @@ const Header = () => {
             </Link>
           ))}
           {isLogin() ? (
-            <div></div>
+            <div className="text-white font-bold flex items-center">
+              <UserIcon className="w-[30px] h-[30px]" />
+              <div>{userInfo}</div>
+            </div>
           ) : (
             <Link href={LOGIN}>
               <a

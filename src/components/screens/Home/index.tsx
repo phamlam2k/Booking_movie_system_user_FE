@@ -53,7 +53,7 @@ const Home = () => {
   return (
     <div className="w-[65%] m-auto">
       <div className="text-center pt-[30px] text-[25px] font-bold">Movies in July</div>
-      <div className="flex gap-[30px] mt-[30px]">
+      <div className="flex gap-[30px] mt-[30px] flex-wrap justify-center">
         {data?.map((movie: any) => {
           return (
             <div key={movie.id} className="relative w-[220px] h-fit group cursor-pointer">
@@ -66,7 +66,7 @@ const Home = () => {
               </div>
               <div className="absolute bottom-0 bg-[#000000bd] text-white w-[100%] hidden group-hover:block">
                 <div className="text-center mt-[10px]">{movie.name}</div>
-                <div className="flex justify-evenly mt-[10px]">
+                <div className="flex justify-evenly py-[10px]">
                   <Link href={bindParams(MOVIE_DETAIL, { id: movie.id })}>
                     <a className="bg-red-400 py-[5px] px-[20px] rounded-md">Detail</a>
                   </Link>
