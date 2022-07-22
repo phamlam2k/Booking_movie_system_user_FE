@@ -1,5 +1,6 @@
-import MovieDetail from '@components/screens/MovieDetail'
-import { NextPage } from 'next'
+import UserProfile from '@components/screens/UserProfile'
+import { API_USER_PROFILE } from '@config/endpointApi'
+import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 
@@ -15,20 +16,18 @@ const Banner = dynamic(() => import('@src/common/Banner'), {
   ssr: false,
 })
 
-const MovieDetailPage: NextPage = () => {
+const UserProfilePage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>USTH Cinema - Movie</title>
+        <title>USTH Cinema - User Profile</title>
       </Head>
-      <div className="w-screen h-screen">
-        <Header />
-        <Banner />
-        <MovieDetail />
-        <Footer />
-      </div>
+      <Header />
+      <Banner />
+      <UserProfile />
+      <Footer />
     </>
   )
 }
 
-export default MovieDetailPage
+export default UserProfilePage

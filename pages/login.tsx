@@ -40,7 +40,7 @@ const Login: NextPage = () => {
           handleResend(res.user.email)
         } else {
           localStorage.setItem(USER_INFO, JSON.stringify(res.user))
-          localStorage.setItem(AUTH_TOKEN, JSON.stringify(res.access_token))
+          localStorage.setItem(AUTH_TOKEN, res.access_token)
           route.replace(HOME)
         }
       })

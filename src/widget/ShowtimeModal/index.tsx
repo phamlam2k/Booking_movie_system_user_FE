@@ -1,7 +1,10 @@
+import { bindParams } from '@config/function'
+import { SHOWTIME_DETAIL } from '@config/path'
 import moment from 'moment'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-const ShowtimeModal = ({ selectDate, handleSelectDate, showtime }: any) => {
+export const ShowtimeModal = ({ selectDate, handleSelectDate, showtime }: any) => {
   const [date, setDate] = useState<any>([])
   const AMOUNT_DATE = 11
 
@@ -12,8 +15,6 @@ const ShowtimeModal = ({ selectDate, handleSelectDate, showtime }: any) => {
       }
     }
   }, [])
-
-  console.log(showtime)
 
   return (
     <div>
@@ -34,14 +35,12 @@ const ShowtimeModal = ({ selectDate, handleSelectDate, showtime }: any) => {
       <div className="flex gap-[10px] mt-[10px]">
         {showtime?.map((items: any) => {
           return (
-            <div key={items?.id} className="p-2 border-2 border-black">
-              {items?.show_time}
-            </div>
+            <Link href={bindParams(SHOWTIME_DETAIL, { id: items?.id })} key={items?.id}>
+              <a className="p-2 border-2 border-black cursor-pointer">{items?.show_time}</a>
+            </Link>
           )
         })}
       </div>
     </div>
   )
 }
-
-export default ShowtimeModal

@@ -1,8 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import useMovieDetailQuery from '@hooks/useMovieDetailQuery'
+import { useRouter } from 'next/router'
 import ReactPlayer from 'react-player'
 
-const MovieDetail = ({ id }: { id: string | string[] | undefined }) => {
+const MovieDetail = () => {
+  const route = useRouter()
+  const id = Number(route.query.id)
   const { data: movie_detail } = useMovieDetailQuery(id)
 
   return (

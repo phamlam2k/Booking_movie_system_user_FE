@@ -8,8 +8,6 @@ interface Props {
   controls?: boolean
 }
 
-const VideoModal = ({ url, loop, controls, width, height }: Props) => {
+export const VideoModal = ({ url, loop, controls, width, height }: Props) => {
   return <ReactPlayer url={url} loop={loop} controls={controls} width={width} height={height} />
 }
-
-export default VideoModal

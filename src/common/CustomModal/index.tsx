@@ -22,7 +22,7 @@ const customStyles: any = {
   },
 }
 
-const CustomModal = ({ isOpen, onAfterOpen, onRequestClose, children }: any) => {
+export const CustomModal = ({ isOpen, onAfterOpen, onRequestClose, children }: any) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.height = '100vh'
@@ -48,5 +48,3 @@ const CustomModal = ({ isOpen, onAfterOpen, onRequestClose, children }: any) => 
     </Modal>
   )
 }
-
-export default CustomModal

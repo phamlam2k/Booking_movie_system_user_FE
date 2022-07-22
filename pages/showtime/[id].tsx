@@ -1,7 +1,6 @@
-import MovieDetail from '@components/screens/MovieDetail'
-import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import Head from 'next/head'
+import ShowtimeDetail from '@components/screens/ShowtimeDetail'
+import dynamic from 'next/dynamic'
 
 const Header = dynamic(() => import('@src/common/Header'), {
   ssr: false,
@@ -15,20 +14,20 @@ const Banner = dynamic(() => import('@src/common/Banner'), {
   ssr: false,
 })
 
-const MovieDetailPage: NextPage = () => {
+const SeatDetails = () => {
   return (
     <>
       <Head>
-        <title>USTH Cinema - Movie</title>
+        <title>USTH Cinema - Showtime</title>
       </Head>
       <div className="w-screen h-screen">
         <Header />
         <Banner />
-        <MovieDetail />
+        <ShowtimeDetail />
         <Footer />
       </div>
     </>
   )
 }
 
-export default MovieDetailPage
+export default SeatDetails

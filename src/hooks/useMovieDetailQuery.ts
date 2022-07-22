@@ -14,6 +14,7 @@ const useMovieDetailQuery = (id: any) => {
     refetchOnWindowFocus: false,
     keepPreviousData: true,
     staleTime: 5000,
+    enabled: !!id,
   })
 }
 
