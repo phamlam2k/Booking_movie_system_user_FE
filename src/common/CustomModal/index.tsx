@@ -25,9 +25,9 @@ const customStyles: any = {
 export const CustomModal = ({ isOpen, onAfterOpen, onRequestClose, children }: any) => {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.height = '100vh'
+      // document.body.style.height = '100vh'
       document.body.style.width = '100%'
-      document.body.style.position = 'fixed'
+      // document.body.style.position = 'fixed'
     } else {
       document.body.style.height = 'unset'
       document.body.style.overflow = 'unset'
