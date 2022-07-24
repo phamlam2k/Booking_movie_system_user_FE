@@ -84,7 +84,7 @@ export const ShowtimeDetail = () => {
   if (isLoading) return <BouncingLoader />
 
   return (
-    <div className="w-[65%] m-auto mt-[300px]">
+    <div className="w-[65%] m-auto mt-[30px]">
       <div className="flex justify-center lg:justify-between flex-wrap">
         <div className="text-[22px] font-bold">
           <span className="text-red-600">Rạp: </span>
