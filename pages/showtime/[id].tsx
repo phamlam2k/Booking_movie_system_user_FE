@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import ShowtimeDetail from '@components/screens/ShowtimeDetail'
 import dynamic from 'next/dynamic'
+import { NextPage } from 'next'
 
 const Header = dynamic(() => import('@src/common/Header'), {
   ssr: false,
@@ -10,11 +10,18 @@ const Footer = dynamic(() => import('@src/common/Footer'), {
   ssr: false,
 })
 
+const ShowtimeDetail = dynamic<any>(
+  () => import('@components/screens/ShowtimeDetail').then((mod) => mod.ShowtimeDetail),
+  {
+    ssr: false,
+  },
+)
+
 const Banner = dynamic(() => import('@src/common/Banner'), {
   ssr: false,
 })
 
-const SeatDetails = () => {
+const ShowtimePage: NextPage = () => {
   return (
     <>
       <Head>
@@ -30,4 +37,4 @@ const SeatDetails = () => {
   )
 }
 
-export default SeatDetails
+export default ShowtimePage

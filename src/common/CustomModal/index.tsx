@@ -41,6 +41,7 @@ export const CustomModal = ({ isOpen, onAfterOpen, onRequestClose, children }: a
       isOpen={isOpen}
       style={customStyles}
       onAfterOpen={onAfterOpen}
+      ariaHideApp={false}
       onRequestClose={onRequestClose}
       contentLabel="Example Modal"
     >

@@ -3,29 +3,41 @@ import { bindParams } from '@config/function'
 import { MOVIE_DETAIL } from '@config/path'
 import useMovieQuery from '@hooks/useMovieQuery'
 import useShowtimeQuery from '@hooks/useShowtimeQuery'
-import { CustomModal } from '@src/common/CustomModal'
 import { IconPlay } from '@src/common/Icons'
-import { ShowtimeModal } from '@src/widget/ShowtimeModal'
 import { VideoModal } from '@src/widget/VideoModal'
 import moment from 'moment'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-const Home = () => {
-  const route = useRouter()
+const CustomModal = dynamic<any>(() => import('@src/common/CustomModal').then((mod) => mod.CustomModal), {
+  ssr: false,
+})
+
+const ShowtimeModal = dynamic<any>(() => import('@src/widget/ShowtimeModal').then((mod) => mod.ShowtimeModal), {
+  ssr: false,
+})
+
+export const Home = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenShowtime, setIsOpenShowtime] = useState(false)
   const [url, setUrl] = useState<string>('')
-  const [keyword, setKeyword] = useState('')
+  const [keyword] = useState('')
   const [keywordShowtime, setKeywordShowtime] = useState('')
   const [selectDate, setSelectDate] = useState(moment().format('YYYY-MM-DD'))
-  const [time, setTime] = useState('')
-  const [limit, setLimit] = useState(1000)
-  const [page, setPage] = useState(1)
+  const [time] = useState('')
+  const [limit, setLimit] = useState(5)
+  const [page] = useState(1)
 
   const { data: movies } = useMovieQuery([limit, keyword, page])
   const { data: showtime } = useShowtimeQuery([limit, keywordShowtime, page, selectDate, time])
+
+  const data = movies?.data
+  const totalMovies = movies?.total
+
+  const handleShowMoreMovies = () => {
+    setLimit(limit + 5)
+  }
 
   const handleCloseModal = () => {
     setIsOpen(false)
@@ -48,8 +60,6 @@ const Home = () => {
     setKeywordShowtime(value)
     setIsOpenShowtime(true)
   }
-
-  const data = movies?.data
 
   return (
     <div className="w-[65%] m-auto">
@@ -83,6 +93,14 @@ const Home = () => {
           )
         })}
       </div>
+      {limit < totalMovies && (
+        <div
+          className="w-[100px] mt-[20px] py-[5px] m-auto text-center border-2 border-black cursor-pointer"
+          onClick={handleShowMoreMovies}
+        >
+          See more
+        </div>
+      )}
       <CustomModal isOpen={isOpen} onRequestClose={handleCloseModal}>
         <VideoModal url={url} width={'600px'} height={'350px'} controls={true} />
       </CustomModal>
@@ -92,5 +110,3 @@ const Home = () => {
     </div>
   )
 }
-
-export default Home

@@ -1,5 +1,4 @@
 import UserProfile from '@components/screens/UserProfile'
-import { API_USER_PROFILE } from '@config/endpointApi'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'

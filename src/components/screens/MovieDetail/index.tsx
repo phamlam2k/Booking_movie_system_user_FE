@@ -1,12 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import useMovieDetailQuery from '@hooks/useMovieDetailQuery'
+import BouncingLoader from '@src/common/BouncingLoader'
 import { useRouter } from 'next/router'
 import ReactPlayer from 'react-player'
 
-const MovieDetail = () => {
+export const MovieDetail = () => {
   const route = useRouter()
   const id = Number(route.query.id)
-  const { data: movie_detail } = useMovieDetailQuery(id)
+  const { data: movie_detail, isLoading } = useMovieDetailQuery(id)
+
+  if (isLoading) return <BouncingLoader />
 
   return (
     <div className="w-[65%] mt-[30px] m-auto">
@@ -41,5 +44,3 @@ const MovieDetail = () => {
     </div>
   )
 }
-
-export default MovieDetail

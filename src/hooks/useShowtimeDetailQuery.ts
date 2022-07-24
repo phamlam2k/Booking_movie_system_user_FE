@@ -10,7 +10,7 @@ const getShowtime = async (id: any) => {
 }
 
 const useShowtimeDetailQuery = (id: any) => {
-  return useQuery(['movie_detail'], () => getShowtime(id), {
+  return useQuery(['showtime_detail'], () => getShowtime(id), {
     refetchOnWindowFocus: false,
     keepPreviousData: true,
     staleTime: 5000,

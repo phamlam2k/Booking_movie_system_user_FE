@@ -9,6 +9,7 @@ export const API_CHANGE_PASSWORD = `${API_AUTH}/change_password`
 export const API_USER_PROFILE = `${API_AUTH}/user_profile`
 export const API_VERIFY = `${API_AUTH}/email/verify_OTP`
 export const API_LOGOUT_VERIFY = `${API_AUTH}/email/logout_OTP`
+export const API_UPDATE_PROFILE = `${API_AUTH}/update_profile`
 
 export const API_ADVERTISEMENT = `${BASE_API}/advertise`
 
@@ -25,3 +26,5 @@ export const API_TICKET_ORDER = `${API_TICKET}/order`
 export const API_TICKET_PAY = `${API_TICKET}/pay`
 export const API_TICKET_DELETE = `${API_TICKET}/delete`
 export const API_TICKET_SHOWTIME = `${API_TICKET}/ticket_showtime`
+export const API_TICKET_USER_ID = `${API_TICKET}/ticket_user_id`
+export const API_TICKET_CHECK = `${API_TICKET}/ticket_check/:id`

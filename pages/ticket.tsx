@@ -1,3 +1,4 @@
+import Ticket from '@components/screens/Ticket'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
@@ -10,28 +11,22 @@ const Footer = dynamic(() => import('@src/common/Footer'), {
   ssr: false,
 })
 
-const Home = dynamic<any>(() => import('@components/screens/Home').then((mod) => mod.Home), {
-  ssr: false,
-})
-
 const Banner = dynamic(() => import('@src/common/Banner'), {
   ssr: false,
 })
 
-const HomePage: NextPage = () => {
+const TicketPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>USTH Cinema - Home</title>
+        <title>USTH Cinema - Ticket</title>
       </Head>
-      <div className="w-screen h-screen">
-        <Header />
-        <Banner />
-        <Home />
-        <Footer />
-      </div>
+      <Header />
+      <Banner />
+      <Ticket />
+      <Footer />
     </>
   )
 }
 
-export default HomePage
+export default TicketPage

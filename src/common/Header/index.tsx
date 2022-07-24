@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ToastContainer } from 'react-toastify'
-import { HOME, LOGIN, MOVIE_COMING_SOON, MOVIE_NOW_SHOWING, REGISTER, TICKET } from '../../config/path'
+import { HOME, LOGIN, MOVIE_COMING_SOON, MOVIE_NOW_SHOWING, REGISTER, TICKET, USER_PROFILE } from '../../config/path'
 import { UserIcon } from '../Icons'
 
 const MENU_LINK = [
@@ -28,14 +28,18 @@ const MENU_LINK = [
 ]
 
 const Header = () => {
-  const { pathname } = useRouter()
+  const { pathname, push } = useRouter()
   const [userInfo, setUserInfo] = useState()
 
   useEffect(() => {
     if (typeof window !== undefined) {
-      setUserInfo(JSON.parse(localStorage.getItem(USER_INFO) || '').full_name.split(' ')[0])
+      setUserInfo(JSON.parse(localStorage.getItem(USER_INFO) || '{}').full_name?.split(' ')[0])
     }
   }, [])
+
+  const handleSwitchUserProfile = () => {
+    push(USER_PROFILE)
+  }
 
   return (
     <div className="w-full bg-[#00000059] shadow-2xl fixed">
@@ -54,7 +58,7 @@ const Header = () => {
             </Link>
           ))}
           {isLogin() ? (
-            <div className="text-white font-bold flex items-center">
+            <div className="text-white font-bold flex items-center cursor-pointer" onClick={handleSwitchUserProfile}>
               <UserIcon className="w-[30px] h-[30px]" />
               <div>{userInfo}</div>
             </div>

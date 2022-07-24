@@ -11,8 +11,8 @@ export const isVerify = () => {
   return !!localStorage.getItem(VERIFY_ID)
 }
 
-export const bindParams = (url: string, params: { id: number }) => {
-  const { id }: { id: number } = params
+export const bindParams = (url: string, params: { id: number | undefined }) => {
+  const { id }: { id: number | undefined } = params
   const string = url.replace(':id', String(id))
 
   return string

@@ -1,4 +1,3 @@
-import MovieDetail from '@components/screens/MovieDetail'
 import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
@@ -12,6 +11,10 @@ const Footer = dynamic(() => import('@src/common/Footer'), {
 })
 
 const Banner = dynamic(() => import('@src/common/Banner'), {
+  ssr: false,
+})
+
+const MovieDetail = dynamic<any>(() => import('@components/screens/MovieDetail').then((mod) => mod.MovieDetail), {
   ssr: false,
 })
 

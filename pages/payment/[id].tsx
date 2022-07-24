@@ -1,8 +1,7 @@
-import Payment from '@components/screens/Payment'
 import { VERIFY_ID } from '@config/const'
 import { isVerify } from '@config/function'
 import { HOME } from '@config/path'
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -16,12 +15,15 @@ const Footer = dynamic(() => import('@src/common/Footer'), {
   ssr: false,
 })
 
+const Payment = dynamic<any>(() => import('@components/screens/Payment').then((mod) => mod.Payment), {
+  ssr: false,
+})
+
 const Banner = dynamic(() => import('@src/common/Banner'), {
   ssr: false,
 })
 
 const PaymentPage: NextPage = () => {
-  const [tickets, setTickets] = useState()
   const route = useRouter()
 
   useLayoutEffect(() => {
