@@ -1,10 +1,14 @@
 import { USER_INFO } from '@config/const'
+import { isLogin } from '@config/function'
+import { LOGIN } from '@config/path'
 import useTicketByUserIdQuery from '@hooks/useTicketByUserIdQuery'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 const Ticket = () => {
   const [id, setId] = useState()
   const [limit, setLimit] = useState(1000)
+  const route = useRouter()
   const [page, setPage] = useState(1)
   const { data: tickets, isLoading } = useTicketByUserIdQuery([id, limit, page])
 
@@ -12,6 +16,9 @@ const Ticket = () => {
   const last_page = tickets?.last_page
 
   useEffect(() => {
+    if (isLogin()) {
+      route.push(LOGIN)
+    }
     if (typeof window !== undefined) {
       setId(JSON.parse(localStorage.getItem(USER_INFO) || '{}').id)
     }
