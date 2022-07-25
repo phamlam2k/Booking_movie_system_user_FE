@@ -140,12 +140,12 @@ export const Payment = () => {
 
   return (
     <div className="w-[65%] mt-[50px] m-auto">
-      <div className="text-center text-[25px] font-bold">Vui lòng check ticket trước khi thanh toán</div>
+      <div className="text-center text-[25px] font-bold">Please check tickets before you book</div>
       <div className="flex justify-between mt-[20px]">
-        <div>
+        <div className="flex flex-wrap gap-[20px]">
           {ticketCheck?.map((ticket: any) => {
             return (
-              <div key={ticket?.id} className="border-2 border-black py-4 px-5">
+              <div key={ticket?.id} className="border-2 border-black pt-4 h-[170px] px-5">
                 <div>ID: {ticket?.id}</div>
                 <div>
                   Seat: {ticket?.seat?.row}
@@ -159,7 +159,7 @@ export const Payment = () => {
           })}
         </div>
         <div className="w-[300px]">
-          <div>Tổng số tiền bạn sẽ trả: {money}$</div>
+          <div>Total of money you have to pay: {money}$</div>
           <div>
             You have left <span className="text-red-700">{time}</span> second
           </div>
@@ -167,9 +167,9 @@ export const Payment = () => {
             className="w-[100%] mt-[20px] py-2 bg-red-600 text-[18px] text-white cursor-pointer text-center"
             onClick={handleCancelTicket}
           >
-            Hủy
+            Cancel
           </div>
-          <div className="py-[10px] text-[20px]">Phương thức thanh toán:</div>
+          <div className="py-[10px] text-[20px]">Payment methods:</div>
           <PayPalButton
             amount={money}
             onSuccess={handlePayment}

@@ -88,22 +88,22 @@ export const ShowtimeDetail = () => {
     <div className="w-[65%] m-auto mt-[30px]">
       <div className="flex justify-center lg:justify-between flex-wrap">
         <div className="text-[22px] font-bold">
-          <span className="text-red-600">Rạp: </span>
+          <span className="text-red-600">Thread: </span>
           {showtime?.room?.name}
         </div>
         <div className="text-[22px] font-bold">
-          <span className="text-red-600">Ngày chiếu: </span>
+          <span className="text-red-600">Show date: </span>
           {showtime?.show_date}
         </div>
         <div className="text-[22px] font-bold">
-          <span className="text-red-600">Thời gian chiếu: </span>
+          <span className="text-red-600">Show time: </span>
           {showtime?.show_time}
         </div>
       </div>
       <div className="flex mt-[50px] xl:mt-[30px] justify-center md:justify-evenly flex-wrap items-center">
         <div className="w-[200px]">
           <img src={showtime?.movie?.poster} alt={showtime?.movie?.poster} className="w-[100%]" />
-          <div className="text-center mt-[10px] text-[20px]">Tên phim: {showtime?.movie?.name}</div>
+          <div className="text-center mt-[10px] text-[20px]">Name: {showtime?.movie?.name}</div>
         </div>
         <div className="pt-[50px] xl:pt-0">
           <div>
@@ -138,7 +138,7 @@ export const ShowtimeDetail = () => {
                       type="checkbox"
                     />
                     <img
-                      src="/images/seat.png"
+                      src={seat?.type_seat != 3 ? '/images/seat-booked.png' : '/images/seat.png'}
                       alt="seat booked"
                       className="absolute z-[-1] w-[100%] h-[100%] top-0 cursor-pointer"
                     />
@@ -150,7 +150,7 @@ export const ShowtimeDetail = () => {
         </div>
       </div>
       <div className="flex justify-around mt-[50px]">
-        <div className="w-[150px]">Tổng số tiền: {totalMoney}</div>
+        <div className="w-[150px]">Total money: {totalMoney}$</div>
         {isLogin() ? (
           <button
             className="py-[5px] px-[20px] bg-black text-white"
