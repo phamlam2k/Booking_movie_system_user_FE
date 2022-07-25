@@ -16,7 +16,7 @@ const Ticket = () => {
   const last_page = tickets?.last_page
 
   useEffect(() => {
-    if (isLogin()) {
+    if (!isLogin()) {
       route.push(LOGIN)
     }
     if (typeof window !== undefined) {
