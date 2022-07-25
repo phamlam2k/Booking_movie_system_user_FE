@@ -15,9 +15,11 @@ export const API_ADVERTISEMENT = `${BASE_API}/advertise`
 
 export const API_SHOWTIME = `${BASE_API}/showtime`
 export const API_SHOWTIME_DETAIL = `${BASE_API}/showtime/:id`
+export const API_SHOWTIME_SHOWING_NOW = `${BASE_API}/showtime/showing_now`
 
 export const API_MOVIES = `${BASE_API}/movies`
 export const API_MOVIE_DETAIL = `${BASE_API}/movies/:id`
+export const API_MOVIE_VIEWER = `${BASE_API}/movies/viewer`
 
 export const API_SEAT_OF_ROOM = `${BASE_API}/seat/in_room/:id`
 

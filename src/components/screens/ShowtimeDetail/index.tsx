@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { USER_INFO, VERIFY_ID } from '@config/const'
+import { MOVIE_ID, USER_INFO, VERIFY_ID } from '@config/const'
 import { API_TICKET_ORDER } from '@config/endpointApi'
 import { bindParams, isLogin } from '@config/function'
 import { LOGIN, PAYMENT } from '@config/path'
@@ -72,6 +72,7 @@ export const ShowtimeDetail = () => {
       .then((res: any) => {
         toast.success(res?.message)
         localStorage.setItem(VERIFY_ID, JSON.stringify(seatTicket))
+        localStorage.setItem(MOVIE_ID, showtime?.movie?.id)
         setTimeout(() => {
           route.push(bindParams(PAYMENT, { id }))
         }, 1000)

@@ -1,7 +1,8 @@
-import { USER_INFO, VERIFY_ID } from '@config/const'
-import { API_TICKET_DELETE, API_TICKET_PAY } from '@config/endpointApi'
+import { MOVIE_ID, USER_INFO, VERIFY_ID } from '@config/const'
+import { API_MOVIE_VIEWER, API_TICKET_DELETE, API_TICKET_PAY } from '@config/endpointApi'
 import { bindParams, isVerify } from '@config/function'
 import { HOME, SHOWTIME_DETAIL, TICKET } from '@config/path'
+import useMovieDetailQuery from '@hooks/useMovieDetailQuery'
 import useTicketCheckQuery from '@hooks/useTicketCheckQuery'
 import BouncingLoader from '@src/common/BouncingLoader'
 import { postAxios } from '@utils/Http'
@@ -15,6 +16,8 @@ export const Payment = () => {
   const [userInfo, setUserInfo] = useState<any>([])
   const route = useRouter()
   const [seat, setSeat] = useState([])
+  const [viewer, setViewer] = useState()
+  const [movieId, setMovieId] = useState<any>()
   const [listSeat, setListSeat] = useState<any[]>([])
   const [time, setTime] = useState(0)
   const [money, setMoney] = useState(0)
@@ -22,7 +25,7 @@ export const Payment = () => {
 
   const [scriptLoaded, setScriptLoaded] = useState(false)
   const { data: ticketCheck, isLoading } = useTicketCheckQuery(userInfo?.id)
-  console.log(ticketCheck)
+  const { data: movieDetail } = useMovieDetailQuery(movieId)
 
   useEffect(() => {
     let m = 0
@@ -34,6 +37,12 @@ export const Payment = () => {
     }
     setMoney(m)
   }, [seat])
+
+  useEffect(() => {
+    if (movieDetail) {
+      setViewer(movieDetail?.viewer)
+    }
+  }, [movieDetail])
 
   const handleCancelTicket = () => {
     const params = {
@@ -79,6 +88,7 @@ export const Payment = () => {
     if (typeof window !== undefined) {
       setUserInfo(JSON.parse(localStorage.getItem(USER_INFO) || '{}'))
       setSeat(JSON.parse(localStorage.getItem(VERIFY_ID) || '[]'))
+      setMovieId(localStorage.getItem(MOVIE_ID))
     }
   }, [])
 
@@ -89,7 +99,15 @@ export const Payment = () => {
       showtime: route?.query?.id,
     }
 
+    let viewerCount: any = viewer
+
     postAxios(API_TICKET_PAY, params)
+      .then(() => {
+        postAxios(API_MOVIE_VIEWER, {
+          user_id: movieId,
+          viewer: viewerCount + ticketCheck?.length,
+        })
+      })
       .then((res: any) => {
         toast.success(res?.message)
         setTimeout(() => {
@@ -133,7 +151,7 @@ export const Payment = () => {
                   Seat: {ticket?.seat?.row}
                   {ticket?.seat?.order}
                 </div>
-                <div>ShowTime: {ticket?.showtime?.show_date}</div>
+                <div>ShowDate: {ticket?.showtime?.show_date}</div>
                 <div>ShowTime: {ticket?.showtime?.show_time}</div>
                 <div>Money: {ticket?.money}$</div>
               </div>
