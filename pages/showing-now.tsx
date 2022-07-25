@@ -1,13 +1,16 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { NextPage } from 'next'
-import { NowShowing } from '@components/screens/ShowingNow'
 
 const Header = dynamic(() => import('@src/common/Header'), {
   ssr: false,
 })
 
 const Footer = dynamic(() => import('@src/common/Footer'), {
+  ssr: false,
+})
+
+const NowShowing = dynamic<any>(() => import('@components/screens/ShowingNow').then((mod) => mod.NowShowing), {
   ssr: false,
 })
 
