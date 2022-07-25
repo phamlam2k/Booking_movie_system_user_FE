@@ -149,7 +149,6 @@ export const ShowtimeDetail = () => {
           </div>
         </div>
       </div>
-      <div className="mt-[200px]"></div>
       <div className="flex justify-around mt-[50px]">
         <div className="w-[150px]">Tổng số tiền: {totalMoney}</div>
         {isLogin() ? (

@@ -3,17 +3,35 @@ import { bindParams } from '@config/function'
 import { SHOWTIME_DETAIL } from '@config/path'
 import useNowShowingQuery from '@hooks/useNowShowingQuery'
 import { useRouter } from 'next/router'
+import { useRef, useState } from 'react'
 
 export const NowShowing = () => {
   const route = useRouter()
-  const { data: nowShowing } = useNowShowingQuery()
+  const [keyword, setKeyword] = useState('')
+  const valRef = useRef() as React.MutableRefObject<HTMLInputElement>
+
+  const { data: nowShowing, isLoading } = useNowShowingQuery([keyword])
 
   const handleGoToShowtime = (id: any) => {
     route.push(bindParams(SHOWTIME_DETAIL, { id }))
   }
+
+  const handleSearch = () => {
+    setKeyword(valRef?.current?.value)
+  }
+
   return (
     <div className="flex flex-col w-[65%] m-auto mt-[50px]">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div className="flex flex-col justify-center items-center">
+        <div className="text-[20px]">Find the movie you want</div>
+        <div className="flex mt-[20px]">
+          <input className="border-2 border-black py-[3px] px-[10px]" ref={valRef} />
+          <div onClick={handleSearch} className="py-[3px] cursor-pointer px-[10px] bg-blue-500 text-white">
+            Search
+          </div>
+        </div>
+      </div>
+      <div className="mt-[20px] overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
           <div className="overflow-hidden">
             <table className="min-w-full">
@@ -69,6 +87,7 @@ export const NowShowing = () => {
                 })}
               </tbody>
             </table>
+            {isLoading && <div className="text-center mt-[30px] text-[30px]">Loading</div>}
           </div>
         </div>
       </div>

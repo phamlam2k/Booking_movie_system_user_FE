@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 
 const Ticket = () => {
   const [id, setId] = useState()
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(1000)
   const [page, setPage] = useState(1)
-  const { data: tickets } = useTicketByUserIdQuery([id, limit, page])
+  const { data: tickets, isLoading } = useTicketByUserIdQuery([id, limit, page])
 
   const data = tickets?.data
   const last_page = tickets?.last_page
@@ -69,6 +69,7 @@ const Ticket = () => {
                 })}
               </tbody>
             </table>
+            {isLoading && <div className="text-center mt-[100px]">Loading</div>}
           </div>
         </div>
       </div>

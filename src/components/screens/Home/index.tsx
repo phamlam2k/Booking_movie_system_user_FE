@@ -29,7 +29,7 @@ export const Home = () => {
   const [limit, setLimit] = useState(5)
   const [page] = useState(1)
 
-  const { data: movies } = useMovieQuery([limit, keyword, page])
+  const { data: movies, isLoading } = useMovieQuery([limit, keyword, page])
   const { data: showtime } = useShowtimeQuery([limit, keywordShowtime, page, selectDate, time])
 
   const data = movies?.data
@@ -64,6 +64,7 @@ export const Home = () => {
   return (
     <div className="w-[65%] m-auto">
       <div className="text-center pt-[30px] text-[25px] font-bold">Movies in July</div>
+      {isLoading && <div className="text-center mt-[30px] text-[30px]">Loading</div>}
       <div className="flex gap-[30px] mt-[30px] flex-wrap justify-center">
         {data?.map((movie: any) => {
           return (

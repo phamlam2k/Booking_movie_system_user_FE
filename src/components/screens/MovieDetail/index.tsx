@@ -17,9 +17,9 @@ export const MovieDetail = () => {
       <div className="flex gap-[20px] mt-[30px]">
         <div>
           <img src={movie_detail?.poster} alt={movie_detail?.name} className="w-[200px] object-contain" />
-          <div className="w-[100%] text-center mt-[20px] rounded-md text-white py-2 bg-red-500 cursor-pointer">
+          {/* <div className="w-[100%] text-center mt-[20px] rounded-md text-white py-2 bg-red-500 cursor-pointer">
             Mua vé
-          </div>
+          </div> */}
         </div>
         <div>
           <div className="text-[25px] font-bold border-b-2 border-black py-2 px-1">{movie_detail?.name}</div>
